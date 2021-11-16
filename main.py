@@ -12,6 +12,7 @@ create_user_params = {
     "agreeTermsOfService": "yes",
     "notMinor": "yes"
 }
+# response = requests.post(url=base_url, json=create_user_params)
 
 # create a graph definition
 create_graph_url = f'{base_url}/{username}/graphs'
@@ -26,6 +27,7 @@ create_graph_request_body = {
     "type": "int",
     "color": "sora"
 }
+# response = requests.post(url=create_graph_url, json=create_graph_request_body, headers=request_header)
 
 # post value to the graph
 post_value_url = f'{create_graph_url}/{graph_id}'
@@ -34,6 +36,12 @@ post_value_request_body = {
     "date": now,
     "quantity": "3"
 }
+# response = requests.post(url=post_value_url, json=post_value_request_body, headers=request_header)
 
-response = requests.post(url=post_value_url, json=post_value_request_body, headers=request_header)
+# update unit from oz to cup
+update_unit_request_body = {
+    "unit": "cup"
+}
+response = requests.put(url=post_value_url, headers=request_header, json=update_unit_request_body)
+
 print(response.text)
