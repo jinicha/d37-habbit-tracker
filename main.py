@@ -34,14 +34,14 @@ post_value_url = f'{create_graph_url}/{graph_id}'
 now = dt.datetime.now().strftime("%Y%m%d")
 post_value_request_body = {
     "date": now,
-    "quantity": "3"
+    "quantity": input("How many cups of water did you drink today? ")
 }
-# response = requests.post(url=post_value_url, json=post_value_request_body, headers=request_header)
+response = requests.post(url=post_value_url, json=post_value_request_body, headers=request_header)
 
 # update unit from oz to cup
 update_unit_request_body = {
-    "unit": "cup"
+    "unit": "cups"
 }
-response = requests.put(url=post_value_url, headers=request_header, json=update_unit_request_body)
+# response = requests.put(url=post_value_url, headers=request_header, json=update_unit_request_body)
 
-print(response.text)
+# print(response.text)
